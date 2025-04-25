@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git শিখুন - Version Control in Bengali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .phonetic {
+            font-style: italic;
+            color: #93c5fd;
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen">
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fab fa-git-alt text-3xl text-orange-500"></i>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Git ভার্সন কন্ট্রোল <span class="phonetic">(version control)</span>
+                </h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#basics" class="hover:text-blue-400 transition">মূল বিষয়</a></li>
+                    <li><a href="#commands" class="hover:text-blue-400 transition">কমান্ড</a></li>
+                    <li><a href="#workflow" class="hover:text-blue-400 transition">কাজের পদ্ধতি</a></li>
+                    <li><a href="#resources" class="hover:text-blue-400 transition">সম্পদ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center py-12">
+            <h2 class="text-4xl font-bold mb-4">Git দিয়ে ভার্সন কন্ট্রোল শিখুন</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                সফটওয়্যার ডেভেলপমেন্টে ভার্সন কন্ট্রোল <span class="phonetic">(version control)</span> অপরিহার্য। 
+                Git হল সবচেয়ে জনপ্রিয় ডিস্ট্রিবিউটেড ভার্সন কন্ট্রোল সিস্টেম <span class="phonetic">(distributed version control system)</span>।
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#basics" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+                    শুরু করুন
+                </a>
+                <a href="https://git-scm.com/" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition">
+                    অফিসিয়াল সাইট <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <div class="h-px section-divider my-12"></div>
+
+        <!-- Basics Section -->
+        <section id="basics" class="py-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Git এর মৌলিক ধারণা</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <div class="text-blue-400 text-4xl mb-4">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">ভার্সন কন্ট্রোল <span class="phonetic">(Version Control)</span></h3>
+                    <p class="text-gray-400">
+                        ভার্সন কন্ট্রোল হল কোডের পরিবর্তন ট্র্যাক করার একটি সিস্টেম। এটি আপনাকে সময়ের সাথে কোডের ইতিহাস দেখতে, পুরনো ভার্সনে ফিরে যেতে এবং একাধিক ডেভেলপারের কাজ সমন্বয় করতে সাহায্য করে।
+                    </p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <div class="text-green-400 text-4xl mb-4">
+                        <i class="fab fa-git"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Git কেন?</h3>
+                    <p class="text-gray-400">
+                        Git দ্রুত, ডিস্ট্রিবিউটেড (প্রতিটি ডেভেলপারের কাছে সম্পূর্ণ ইতিহাস থাকে), এবং নন-লিনিয়ার ডেভেলপমেন্টের জন্য উপযোগী (ব্রাঞ্চিং এবং মার্জিং <span class="phonetic">(branching and merging)</span> শক্তিশালী)। এটি ওপেন সোর্স এবং বড় কমিউনিটি সাপোর্ট আছে।
+                    </p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <div class="text-purple-400 text-4xl mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">GitHub, GitLab, Bitbucket</h3>
+                    <p class="text-gray-400">
+                        এগুলি হল Git রিপোজিটরি হোস্টিং সার্ভিস <span class="phonetic">(repository hosting services)</span>। GitHub সবচেয়ে জনপ্রিয় যেখানে আপনি আপনার কোড রিমোটে স্টোর করতে পারেন, অন্য ডেভেলপারদের সাথে সহযোগিতা করতে পারেন এবং ওপেন সোর্স প্রজেক্টে অবদান রাখতে পারেন।
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="h-px section-divider my-12"></div>
+
+        <!-- Commands Section -->
+        <section id="commands" class="py-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">প্রয়োজনীয় Git কমান্ডসমূহ</h2>
+            
+            <div class="space-y-8">
+                <!-- Command 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">রিপোজিটরি শুরু করা</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git init
+                    </div>
+                    <p class="text-gray-400">
+                        বর্তমান ডিরেক্টরিতে একটি নতুন Git রিপোজিটরি <span class="phonetic">(repository)</span> তৈরি করে। এটি একটি লুকানো .git ফোল্ডার তৈরি করবে যেখানে সমস্ত ভার্সন কন্ট্রোল ডেটা সংরক্ষিত হবে।
+                    </p>
+                </div>
+                
+                <!-- Command 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-600 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-clone"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">রিপোজিটরি ক্লোন করা</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git clone &lt;repository-url&gt;
+                    </div>
+                    <p class="text-gray-400">
+                        একটি রিমোট রিপোজিটরি থেকে আপনার লোকাল মেশিনে সম্পূর্ণ প্রজেক্ট কপি করে। এটি সাধারণত GitHub, GitLab বা Bitbucket থেকে একটি প্রজেক্ট ডাউনলোড করার জন্য ব্যবহৃত হয়।
+                    </p>
+                </div>
+                
+                <!-- Command 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-600 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">ফাইল স্টেজিং</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git add &lt;filename&gt;<br>
+                        git add .  # সব ফাইল স্টেজ করতে
+                    </div>
+                    <p class="text-gray-400">
+                        আপনার পরিবর্তনগুলোকে স্টেজিং এরিয়া <span class="phonetic">(staging area)</span> এ যোগ করে। স্টেজিং এরিয়া হল একটি মধ্যবর্তী স্থান যেখানে আপনি পরবর্তী কমিটে <span class="phonetic">(commit)</span> কী কী পরিবর্তন অন্তর্ভুক্ত করতে চান তা নির্ধারণ করেন।
+                    </p>
+                </div>
+                
+                <!-- Command 4 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-600 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-save"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">কমিট করা</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git commit -m "আপনার কমিট মেসেজ এখানে"
+                    </div>
+                    <p class="text-gray-400">
+                        স্টেজ করা পরিবর্তনগুলোকে স্থায়ীভাবে রিপোজিটরির ইতিহাসে সংরক্ষণ করে। প্রতিটি কমিটের একটি ইউনিক আইডি (হ্যাশ) থাকে এবং একটি মেসেজ থাকে যা পরিবর্তনগুলো বর্ণনা করে। কমিট মেসেজ সবসময় স্পষ্ট এবং অর্থপূর্ণ হওয়া উচিত।
+                    </p>
+                </div>
+                
+                <!-- Command 5 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-600 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">পরিবর্তন পুশ করা</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git push origin &lt;branch-name&gt;
+                    </div>
+                    <p class="text-gray-400">
+                        আপনার লোকাল কমিটগুলোকে রিমোট রিপোজিটরিতে (যেমন GitHub) আপলোড করে। "origin" সাধারণত আপনার রিমোট রিপোজিটরির ডিফল্ট নাম এবং "branch-name" হল যে ব্রাঞ্চে আপনি পুশ করতে চান তার নাম।
+                    </p>
+                </div>
+                
+                <!-- Command 6 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-400 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">ব্রাঞ্চ ম্যানেজমেন্ট</h3>
+                    </div>
+                    <div class="bg-black p-4 rounded code-block mb-4">
+                        git branch  # ব্রাঞ্চ তালিকা দেখতে<br>
+                        git branch &lt;new-branch-name&gt;  # নতুন ব্রাঞ্চ তৈরি<br>
+                        git checkout &lt;branch-name&gt;  # ব্রাঞ্চ পরিবর্তন<br>
+                        git merge &lt;branch-name&gt;  # ব্রাঞ্চ মার্জ
+                    </div>
+                    <p class="text-gray-400">
+                        ব্রাঞ্চিং আপনাকে মূল কোড থেকে আলাদা করে নতুন ফিচার বা ফিক্স কাজ করতে দেয়। প্রতিটি ব্রাঞ্চে কাজ সম্পূর্ণ হলে, আপনি তা মূল ব্রাঞ্চে (সাধারণত main বা master) মার্জ <span class="phonetic">(merge)</span> করতে পারেন।
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="h-px section-divider my-12"></div>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="py-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">সাধারণ Git ওয়ার্কফ্লো</h2>
+            
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row">
+                    <!-- Steps -->
+                    <div class="md:w-1/2 space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">1</div>
+                            <div>
+                                <h3 class="font-semibold">প্রজেক্ট ক্লোন করুন</h3>
+                                <p class="text-gray-400 text-sm">git clone &lt;url&gt;</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">2</div>
+                            <div>
+                                <h3 class="font-semibold">নতুন ব্রাঞ্চ তৈরি করুন</h3>
+                                <p class="text-gray-400 text-sm">git checkout -b &lt;new-branch&gt;</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">3</div>
+                            <div>
+                                <h3 class="font-semibold">পরিবর্তন করুন এবং স্টেজ করুন</h3>
+                                <p class="text-gray-400 text-sm">git add .</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">4</div>
+                            <div>
+                                <h3 class="font-semibold">কমিট করুন</h3>
+                                <p class="text-gray-400 text-sm">git commit -m "মেসেজ"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">5</div>
+                            <div>
+                                <h3 class="font-semibold">রিমোটে পুশ করুন</h3>
+                                <p class="text-gray-400 text-sm">git push origin &lt;branch&gt;</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center mr-4 mt-1">6</div>
+                            <div>
+                                <h3 class="font-semibold">পুল রিকুয়েস্ট তৈরি করুন</h3>
+                                <p class="text-gray-400 text-sm">GitHub/GitLab এ PR খুলুন</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Diagram -->
+                    <div class="md:w-1/2 mt-6 md:mt-0">
+                        <div class="bg-gray-900 p-4 rounded-lg h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-project-diagram text-5xl text-blue-400 mb-4"></i>
+                                <p class="text-gray-400">Git ওয়ার্কফ্লো ডায়াগ্রাম</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-gray-800 rounded-lg p-6 shadow-lg max-w-4xl mx-auto">
+                <h3 class="text-xl font-semibold mb-4 text-blue-400">গুরুত্বপূর্ণ টিপস:</h3>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                        <span>প্রায়শই কমিট করুন - ছোট ছোট অর্থপূর্ণ কমিট ভালো</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                        <span>কমিট মেসেজ স্পষ্ট এবং বর্ণনামূলক রাখুন</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                        <span>মূল ব্রাঞ্চে সরাসরি কাজ করবেন না (main/master)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                        <span>পুশ করার আগে সবসময় রিমোট পরিবর্তন পুল করুন</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                        <span>.gitignore ফাইল ব্যবহার করুন যা ট্র্যাক করা উচিত নয়</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="h-px section-divider my-12"></div>
+
+        <!-- Resources Section -->
+        <section id="resources" class="py-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">অতিরিক্ত সম্পদ</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Resource 1 -->
+                <a href="https://git-scm.com/book/en/v2" target="_blank" class="bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-lg transition group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white p-3 rounded-lg mr-4 group-hover:bg-blue-500 transition">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold group-hover:text-blue-400 transition">Pro Git বই</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Git এর অফিসিয়াল ডকুমেন্টেশন এবং টিউটোরিয়াল। এটি Git শেখার জন্য সবচেয়ে সম্পূর্ণ রিসোর্স।
+                    </p>
+                </a>
+                
+                <!-- Resource 2 -->
+                <a href="https://github.com/" target="_blank" class="bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-lg transition group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-600 text-white p-3 rounded-lg mr-4 group-hover:bg-purple-500 transition">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold group-hover:text-purple-400 transition">GitHub</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        বিশ্বের সবচেয়ে বড় Git হোস্টিং প্ল্যাটফর্ম। ওপেন সোর্স প্রজেক্ট এক্সপ্লোর করুন এবং নিজের প্রজেক্ট হোস্ট করুন।
+                    </p>
+                </a>
+                
+                <!-- Resource 3 -->
+                <a href="https://learngitbranching.js.org/" target="_blank" class="bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-lg transition group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-600 text-white p-3 rounded-lg mr-4 group-hover:bg-green-500 transition">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold group-hover:text-green-400 transition">Learn Git Branching</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        ব্রাঞ্চিং এবং মার্জিং শেখার জন্য ইন্টারেক্টিভ গেম। ভিজ্যুয়ালভাবে Git কমান্ডের প্রভাব বুঝতে সাহায্য করে।
+                    </p>
+                </a>
+                
+                <!-- Resource 4 -->
+                <a href="https://www.atlassian.com/git/tutorials" target="_blank" class="bg-gray-800 hover:bg-gray-700 p-6 rounded-lg shadow-lg transition group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-600 text-white p-3 rounded-lg mr-4 group-hover:bg-red-500 transition">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold group-hover:text-red-400 transition">Atlassian Git Tutorials</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Git এর উপর গভীর টিউটোরিয়াল এবং বেস্ট প্র্যাকটিস গাইড। Bitbucket এর নির্মাতাদের থেকে।
+                    </p>
+                </a>
+            </div>
+            
+            <div class="mt-12 bg-gray-800 rounded-lg p-6 shadow-lg max-w-4xl mx-auto">
+                <h3 class="text-xl font-semibold mb-4 text-center text-blue-400">Git শেখার বাংলা রিসোর্স</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-medium mb-2">YouTube টিউটোরিয়াল:</h4>
+                        <ul class="text-gray-400 space-y-1">
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> Anisul Islam - Git & GitHub</li>
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> Learn With Sumit - Git Complete Guide</li>
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> Coders Foundation - Git বাংলা টিউটোরিয়াল</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-medium mb-2">ব্লগ পোস্ট:</h4>
+                        <ul class="text-gray-400 space-y-1">
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> Git বাংলা গাইড - Dev.to</li>
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> GitHub ব্যবহারের সহজ গাইড - Medium</li>
+                            <li><i class="fas fa-link text-blue-400 mr-2"></i> Git এর বেসিক কমান্ড - Projukti Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        Git ভার্সন কন্ট্রোল
+                    </h2>
+                    <p class="text-gray-400 mt-2">সফটওয়্যার ডেভেলপমেন্টে ভার্সন কন্ট্রোল শিখুন</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://git-scm.com/" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-git-alt"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2023 version-controle.github.io - Git ভার্সন কন্ট্রোল বাংলা গাইড</p>
+                <p class="mt-2 text-sm">এই সাইটটি শিক্ষামূলক উদ্দেশ্যে তৈরি করা হয়েছে</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to current section in navigation
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('text-blue-400');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('text-blue-400');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
